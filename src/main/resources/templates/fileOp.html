@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--     缺少跨帧脚本编制防御 X-Frame-Options-->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <!-- 缺少“Content-Security-Policy”头 -->
+    <meta http-equiv="Content-Security-Policy" content="child-src http: https:" />
+    <!-- 缺少 HTTP Strict-Transport-Security 头 -->
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000;includeSubDomains" />
+    <!-- 缺少“X-Content-Type-Options”头 -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <!-- 缺少“X-XSS-Protection”头 -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <!-- 发现可高速缓存的 SSL -->
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Expires" content="0" />
+    <title>文件操作</title>
+</head>
+<body>
+<h4 id="file" style="text-align: left">
+    <a href="../findAll"> >返回上一页</a>
+</h4>
+<h4>单文件上传</h4>
+<form action="upload" method="POST" enctype="multipart/form-data">
+    文件：<input type="file" name="file" required="required" accept="text/plain"/>
+    <input type="submit"/>
+</form>
+<hr/>
+<hr/>
+
+<h4>文件下载</h4>
+<!--<a href="download">下载文件</a>-->
+<div  style="float: left">
+    &nbsp;&nbsp;&nbsp;
+    <a href="../download?fileName=flag.png">flag.png</a>
+</div>
+<div  style="float: left">
+    &nbsp;&nbsp;&nbsp;
+    <a href="../download?fileName=lena.bmp">lena.bmp</a>
+</div>
+<div  style="float: left">
+    &nbsp;&nbsp;&nbsp;
+    <a href="../download?fileName=test.png">test.png</a>
+</div>
+<div  style="float: left">
+    &nbsp;&nbsp;&nbsp;
+    <a href="../download?fileName=日志.docx">日志.docx</a>
+</div>
+<br/> <br/>
+
+
+<div>
+<hr/>
+<hr/>
+<h4>多文件上传</h4>
+<form method="POST" enctype="multipart/form-data" action="batch">
+    <p>文件1：<input type="file" name="file" required="required" accept="text/plain"/></p>
+    <p>文件2：<input type="file" name="file" required="required" accept="text/plain"/></p>
+    <p>文件3：<input type="file" name="file" required="required" accept="text/plain"/></p>
+    <p><input type="submit" value="上传" /></p>
+</form>
+<hr/>
+<hr/>
+</div>
+</body>
+</html>

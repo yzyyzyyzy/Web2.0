@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+<!--     缺少跨帧脚本编制防御 X-Frame-Options-->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+<!--     缺少“Content-Security-Policy”头 -->
+    <meta http-equiv="Content-Security-Policy" content="child-src http: https:" />
+    <!-- 缺少 HTTP Strict-Transport-Security 头 -->
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000;includeSubDomains" />
+    <!-- 缺少“X-Content-Type-Options”头 -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <!-- 缺少“X-XSS-Protection”头 -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <!-- 发现可高速缓存的 SSL -->
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Expires" content="0" />
+    <title>注册</title>
+</head>
+<body>
+<div style="background-color: aquamarine">
+    <h3 style="align-content:center;text-align:center;">注 册</h3>
+    <form style="text-align:center;" th:action = "@{/add}" method="post">
+        <div>
+            用户名: <input id="user_name" name="username" type="text" placeholder="用户名"/>
+        </div>
+        <br/>
+        <div>
+            密码: <input id="password" name="password" type="password" placeholder="密码"/>
+        </div>
+        <br/>
+        <button type="submit" style="width:150px;" >提 交</button>
+        <br/>
+        <br/>
+    </form>
+    <br/>
+</div>
+</body>
+</html>

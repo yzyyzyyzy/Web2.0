@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserInfoMapper">
+    <!--id对应UserDAO接口方法名-->
+    <!--parameterType对应参数类型-->
+    <!--resultType对应返回值类型-->
+    <!--注意sql语句字段和数据库对应-->
+
+    <select id="findAll" resultType="com.example.demo.pojo.UserInfo">
+        SELECT * FROM users
+        order by eid asc
+    </select>
+
+    <select id="findById" resultType="com.example.demo.pojo.UserInfo" parameterType="java.lang.Integer">
+        SELECT * FROM users WHERE eid = #{eid}
+    </select>
+
+    <insert id="addUser" parameterType="com.example.demo.pojo.UserInfo">
+        insert into users(eid,name,age,sex)
+        values(#{eid},#{name},#{age},#{sex})
+    </insert>
+
+    <update id="modifyUser" parameterType="com.example.demo.pojo.UserInfo">
+        update users
+        set
+            name = #{name},age = #{age},sex = #{sex}
+        where eid = #{eid}
+    </update>
+
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        DELETE FROM users WHERE eid = #{eid}
+    </delete>
+
+</mapper>

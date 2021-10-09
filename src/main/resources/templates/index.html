@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:text-align="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+<!--     缺少跨帧脚本编制防御 X-Frame-Options-->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+<!--     缺少“Content-Security-Policy”头 -->
+    <meta http-equiv="Content-Security-Policy" content="child-src http: https:" />
+    <!-- 缺少 HTTP Strict-Transport-Security 头 -->
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000;includeSubDomains" />
+    <!-- 缺少“X-Content-Type-Options”头 -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <!-- 缺少“X-XSS-Protection”头 -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <!-- 发现可高速缓存的 SSL -->
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Expires" content="0" />
+    <title>主页</title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/style.css}"/>
+</head>
+
+<body>
+<div id="wrap">
+    <div id="top_content">
+        <div id="header">
+            <div id="rightheader">
+                <p>
+                </p>
+            </div>
+            <div id="topheader">
+                <h1 id="title">主页面
+                </h1>
+
+            </div>
+            <div id="navigation">
+                <h4 style="text-align: left">
+                    <a href="../findAll"> >返回上一页</a>
+                </h4>
+                <h2 id="file">
+                    <a th:href="@{/fileOp}">文件上传/下载</a>
+                </h2>
+            </div>
+        </div>
+        <div id="content">
+            <p id="whereami">
+            </p>
+                        <h1>
+                            人员信息表
+                        </h1>
+
+            <table class="table" >
+                <tr>
+                    <td>
+                        <form th:action="@{/findByid}" method="post">
+                            <input type="number" name="eid" placeholder="请输入编号"/>
+                            <input type="submit" class="button" value="查询"/>
+                        </form>
+                    </td>
+                </tr>
+
+                <tr class="table_header">
+                    <td class="id">
+                        编号
+                    </td>
+                    <td>
+                        姓名
+                    </td>
+                    <td>
+                        年龄
+                    </td>
+                    <td>
+                        性别
+                    </td>
+                    <td>
+                        操作
+                    </td>
+                </tr>
+                <tr class="row1" th:each="user:${users}">
+                    <td td class="id">
+                        <span th:text="${user.eid}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${user.name}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${user.age}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${user.sex}"></span>
+                    </td>
+                    <td>
+                        <a th:href="@{/deleteUser(eid=${user.eid})}">删除信息</a>;
+                        <a th:href="@{/findModify(eid=${user.eid})}">修改信息</a>
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <input type="button" class="button" value="添加员工" onclick="location.href='/toAdd'"/>
+            </p>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer_bg">
+            <!--            Sawyer-->
+        </div>
+    </div>
+</div>
+</body>
+</html>
